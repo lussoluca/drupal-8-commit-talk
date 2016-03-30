@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Drupal 8: an Object-Oriented, All-Inclusive Content Management System</title>
+
+		<!--meta name="description" content="A framework for easily creating beautiful presentations using HTML"-->
+		<meta name="author" content="Luca Lusso">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style type="text/css">
+			.blue {
+				color: #006BB3;
+			}
+			.right {
+				text-align: right;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1 class="right">
+				    	<span class="blue">Drupal 8</span>
+					</h1>
+					<h3 class="right">
+					    <b>an Object-Oriented,</b>
+					</h3>
+					<h3 class="right">
+					    <b>All-Inclusive</b>
+					</h3>
+					<h3 class="right">
+					    <b>Content Management System</b>
+					</h3>
+				</section>
+
+				<section>
+					<h3>Luca Lusso</h3>
+					<h4>Senior Drupal Developer @<span class="blue">Wellnet</span></h4>
+					<ul>
+						<li>Twitter: @lussoluca</li>
+						<li>Linkedin: it.linkedin.com/pub/luca-lusso/29/3a9/1a2/</li>
+						<li>Drupal.org: www.drupal.org/u/lussoluca</li>
+						<li>Acquia Certified Grand Master: https://training.acquia.com/registry/grand-masters</li>
+						<li>www.drupal.org/project/devel</li>
+						<li>www.drupal.org/project/xhprof</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="images/wellnet.jpg" style="float:left; width: 42%">
+					<ul style="float:right; width: 48%">
+						<li>Drupal</li>
+						<li>Java</li>
+						<li>Mobile apps</li>
+						<li>Progettazione</li>
+						<li>Consulenza</li>
+						<li>Ricerca e sviluppo</li>
+						<li>Formazione</li>
+						<li>Campagne marketing</li>
+						<li>SEO e Advertise</li>
+						<li class="fragment"><span class="blue">Sempre alla ricerca di nuovi Drupalisti</span></li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h3>Agenda</h3>
+					<ul>
+						<li>La nuova frontiera dei CMS open source</li>
+						<li>Come integrare codice di altri progetti e vivere felici</li>
+						<li>Modella e gestisci i tuoi contenuti in un click</li>
+						<li>Twig per designer e sviluppatori</li>
+						<li>Da procedurale a Object Oriented, i vantaggi del nuovo paradigma</li>
+						<li>Una community da un milione di appasionati</li>
+						<li>Verso Drupal 8.1</li>
+					</ul>
+				</section>
+
+				<section>	
+					<section data-background="images/drupal-8-logo.png">
+						<h3>La nuova frontiera dei CMS open source</h3>
+					</section>
+
+					<section>
+						<h3>Cos'è Drupal?</h3>
+						<img src="images/twitter.png" style="max-width: none; max-height: none; margin: 0px; border: none;">
+					</section>
+
+					<section data-background="images/lego.jpg">
+						<h3>Drupal non è un prodotto finito, ma un insieme di componenti</h3>
+					</section>
+
+					<section>
+						<p>Drupal è un'applicazione scritta in <span class="blue">PHP</span></p>
+						<p class="fragment">Eseguita all'interno di un <span class="blue">server web</span></p>
+						<p class="fragment">Che memorizza i suoi dati/configurazioni all'interno di un <span class="blue">database</span></p>
+						<p class="fragment">--> Stack LAMP <--</p>
+					</section>
+
+					<section>
+						<h3>Perché usare Drupal?</h3>
+						<ul>
+							<li>Flessibile</li>
+							<li>Modulare</li>
+							<li>Accessibile</li>
+							<li>Sicuro</li>
+							<li>Scalabile</li>
+							<li class="fragment"><span class="blue">Open source</span></li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Glossario</h3>
+						<ul>
+							<li>Core -> pacchetto base</li>
+							<li>Contrib -> codice fornito dalla community</li>
+							<li>Custom -> codice ad hoc per un progetto</li>
+							<li>Modulo -> aggiunge funzionalità</li>
+							<li>Tema -> aggiunge layout e stile</li>
+							<li>Distribuzione -> core+moduli+tema+configurazioni</li>
+						</ul>
+					</section>
+
+					<section>
+					    <div style="background-color: #006BB3; width: 100%; height: 400%; position: absolute; top: -100%; left: -45%; z-index: -1;">
+						</div>
+						<div>
+						    <div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top;">
+						        <p style="text-align: right;"><b>Un po' di storia</b></p>
+						    </div>
+						    <div style="width: 40%; display: inline-block;">
+						    </div>
+						</div>
+						<div class="fragment">
+						    <div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top;">
+								<p style="text-align: right;">
+									<b>2001</b>
+								</p>
+							</div>
+							<div style="width: 40%; display: inline-block;">
+								<p style="text-align: left;">
+									<b>Prima versione pubblica</b>
+								</p>
+							</div>
+						</div>
+						<div class="fragment">
+						    <div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top;">
+								<p style="text-align: right;">
+									<b>2006</b>
+								</p>
+							</div>
+							<div style="width: 40%; display: inline-block;">
+								<p style="text-align: left;">
+									<b>Drupal 4.7</b>
+								</p>
+							</div>
+						</div>
+						<div class="fragment">
+						    <div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top;">
+								<p style="text-align: right;">
+									<b>2007</b>
+								</p>
+							</div>
+							<div style="width: 40%; display: inline-block;">
+								<p style="text-align: left;">
+									<b>Drupal 5</b>
+								</p>
+							</div>
+						</div>
+						<div class="fragment">
+						    <div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top;">
+								<p style="text-align: right;">
+									<b>2008</b>
+								</p>
+							</div>
+							<div style="width: 40%; display: inline-block;">
+								<p style="text-align: left;">
+									<b>Drupal 6</b>
+								</p>
+							</div>
+						</div>
+						<div class="fragment">
+						    <div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top;">
+								<p style="text-align: right;">
+									<b>2011</b>
+								</p>
+							</div>
+							<div style="width: 40%; display: inline-block;">
+								<p style="text-align: left;">
+									<b>Drupal 7</b>
+								</p>
+							</div>
+						</div>
+						<div class="fragment">
+						    <div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top;">
+								<p style="text-align: right;">
+									<b>2015</b>
+								</p>
+							</div>
+							<div style="width: 40%; display: inline-block;">
+								<p style="text-align: left;">
+									<b>Drupal 8</b>
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h3>Cosa ci si può fare?</h3>
+					</section>
+
+					<section data-background="images/catalogo.png">
+					</section>
+
+					<section data-background="images/ecommerce.png">
+					</section>
+
+					<section data-background="images/onlus.png">
+					</section>
+
+					<section data-background="images/industria.png">
+					</section>
+
+					<section data-background="images/pa.png">
+					</section>
+
+					<section data-background="images/banking.png">
+					</section>
+
+					<section>
+						<h3>E molto altro ancora</h3>
+						<ul>
+							<li>whitehouse.gov</li>
+							<li>weather.com</li>
+							<li>louvre.fr</li>
+							<li>nasa.gov</li>
+							<li>cern.org</li>
+							<li>uniroma1.it/</li>
+							<li>mit.gov.it/</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Drupal 8</h3>
+						<ul>
+							<li>3491 sviluppatori</li>
+							<li>1280 aziende</li>
+							<li>92 paesi</li>
+							<li>4 anni di sviluppo</li>
+							<li>350.000 righe di codice</li>
+							<li>200+ nuove funzionalità</li>
+							<li>Centinaia di siti già in produzione</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section data-background="images/drupal-8-logo.png">
+						<h3>Come integrare codice di altri progetti e vivere felici</h3>
+					</section>
+
+					<section>	
+						<h3>Librerie integrate</h3>
+						<div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top; font-size: 26px">
+							<p style="text-align: right;">
+								<ul>
+									<li>symfony/class-loader</li>
+									<li>symfony/console</li>
+									<li>symfony/dependency-injection</li>
+									<li>symfony/event-dispatcher</li>
+									<li>symfony/http-foundation</li>
+									<li>symfony/http-kernel</li>
+									<li>symfony/routing</li>
+									<li>symfony/serializer</li>
+									<li>symfony/translation</li>
+									<li>symfony/validator</li>
+									<li>symfony/process</li>
+									<li>symfony/yaml</li>
+									<li>twig/twig</li>
+									<li>doctrine/common</li>
+									<li>doctrine/annotations</li>
+									<li>guzzlehttp/guzzle</li>
+									<li>symfony-cmf/routing</li>
+									<li>easyrdf/easyrdf</li>
+								</ul>
+							</p>
+						</div>
+						<div style="width: 40%; display: inline-block; font-size: 26px">
+							<p style="text-align: left;">
+								<ul>
+									<li>zendframework/zend-feed</li>
+									<li>stack/builder</li>
+									<li>egulias/email-validator</li>
+									<li>masterminds/html5</li>
+									<li>symfony/psr-http-message-bridge</li>
+									<li>zendframework/zend-diactoros</li>
+									<li>composer/semver</li>
+									<li>paragonie/random_compa</li>
+									<li>behat/mink</li>
+									<li>behat/mink-goutte-driver</li>
+									<li>jcalderonzumba/gastonjs</li>
+									<li>jcalderonzumba/mink-phantomjs-driver</li>
+									<li>mikey179/vfsStream</li>
+									<li>phpunit/phpunit</li>
+									<li>symfony/css-selector</li>
+								</ul>
+							</p>
+						</div>
+					</section>
+
+					<section>
+						<div>
+							<h2 style="text-align: left;">
+							    <b>N.I.H.</b>
+							</h2>
+							<p style="text-align: left;">
+								<b>Not invented <span class="blue">here</span></b>
+							</p>
+							<div class="fragment" style="text-align: right; position: absolute; top: -10%; left: 40%; width: 60%;">
+								<p style="margin-bottom: 20px;">
+									<b>Proudly find <span class="blue">elsewere</span></b>
+								</p>
+								<h2>
+									<b>P.F.E.</b>
+								</h2>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<p>Molti sottosistemi di Drupal 5/6/7 sono stati <span class="blue">rimpiazzati</span> da equivalenti (spesso migliori) componenti sviluppati dalla community PHP</p>
+					</section>
+
+					<section>
+					    <div style="background-color: #006BB3; width: 100%; height: 400%; position: absolute; top: -100%; left: -45%; z-index: -1;">
+						</div>
+						<div>
+						    <div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top;">
+						        <p style="text-align: right;"><b>Client HTTP</b></p>
+						    </div>
+						    <div style="width: 40%; display: inline-block;">
+						    </div>
+						</div>
+						<div class="fragment">
+						    <div style="width: 50%; display: inline-block; margin-right: 5%; vertical-align: top;">
+						    	<p><br></p>
+								<p style="text-align: right;">
+									<b>Drupal 7</b>
+								</p>
+						    	<p><br></p>
+								<p style="text-align: right;">
+									<b>drupal_http_request()</b>
+								</p>
+								<p><br></p>
+								<p style="text-align: right;">
+									<b>~300 righe di codice</b>
+								</p>
+								<p><br></p>
+								<p style="text-align: right;">
+									<b>Difficilmente testabile</b>
+								</p>
+							</div>
+							<div style="width: 40%; display: inline-block;">
+						    	<p><br></p>
+								<p style="text-align: left;">
+									<b>Drupal 8</b>
+								</p>
+								<p><br></p>
+								<p style="text-align: left;">
+									<b>guzzlehttp/guzzle</b>
+								</p>
+								<p><br></p>
+								<p style="text-align: left;">
+									<b>modulare</b>
+								</p>
+								<p><br></p>
+								<p style="text-align: left;">
+									<b>100% code coverage</b>
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h2>Webprofiler</h2>
+						<p>Un esempio di come sia potente il nuovo motore di Drupal 8</p>
+						<p class="fragment">Abbiamo preso un bundle di <span class="blue">Symfony</span> e l'abbiamo convertito in un modulo <span class="blue">Drupal<span></p>
+						<img  class="fragment" src="images/webprofiler.png" style="max-width: none; max-height: none; margin: 0px; border: none;">
+					</section>
+				</section>
+
+				<section>
+					<section data-background="images/drupal-8-logo.png">
+						<h3>Modella e gestisci i tuoi contenuti in un click</h3>
+					</section>
+
+					<section>
+						<p>Drupal 8 è un Content Management <span class="blue">Framework</span></p>
+						<p class="fragment">Non è un CMS ma un <span class="blue">generatore</span> di CMS</p>
+					</section>
+
+					<section>
+						<ul>
+							<li>Field e Content types</li>
+							<li>WYSIWYG</li>
+							<li>Layout e blocchi</li>
+							<li>Image styles</li>
+							<li>Tassonomie</li>
+							<li>Viste</li>
+							<li>E molto altro ...</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Multilingua</h2>
+						<p>In Drupal &lt; 8 servivano <span class="blue">decine</span> di moduli contrib</p>
+						<p class="fragment">In Drupal 8 ne bastano 4, e sono tutti nel <span class="blue">core</span></p>
+					</section>
+
+					<section>
+						<h2>Gestione delle configurazioni</h2>
+						<p>Il nuovo Configuration Management rende semplice esportare <span class="blue">TUTTA</span> la configurazione di un sito da un ambiente all'altro.</p>
+					</section>
+
+					<section>
+						<h2>Web service</h2>
+						<p>Tutti i contenuti del sito sono pubblicabile via <span class="blue">REST</span></p>
+						<p class="fragment">si anche le viste!</p>
+					</section>
+				</section>
+
+				<section>
+					<section data-background="images/drupal-8-logo.png">
+						<h3>Twig per designer e sviluppatori</h3>
+					</section>
+
+					<section>
+						<ul>
+							<li>HTML 5</li>
+							<li>Mobile first</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Nuovi temi</h2>
+						<ul>
+							<li>Stable</li>
+							<li>Classy</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Librerie js e css</h2>
+						<ul>
+							<li>Supporto migliorato</li>
+							<li>Nessun js caricato sulla home anonima</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Twig</h2>
+						<ul>
+							<li>Niente più logica nei template</li>
+							<li>Sintassi molto più semplice</li>
+							<li>Più sicuro</li>
+							<li>Più veloce</li>
+							<li>Più intuitivo</li>
+							<li>Più documentato</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Drupal 7</h3>
+						<pre><code class="hljs" data-trim>
+&lt;div id="node-&lt;?php print $node-&gt;nid; ?&gt;" class="&lt;?php print $classes; ?&gt; clearfix"&lt;?php print $attributes; ?&gt;&gt;
+
+  &lt;?php print render($title_prefix); ?&gt;
+  &lt;?php if (!$page): ?&gt;
+    &lt;h2&lt;?php print $title_attributes; ?&gt;&gt;
+      &lt;a href="&lt;?php print $node_url; ?&gt;"&gt;&lt;?php print $title; ?&gt;&lt;/a&gt;
+    &lt;/h2&gt;
+  &lt;?php endif; ?&gt;
+  &lt;?php print render($title_suffix); ?&gt;
+
+  &lt;div class="content clearfix"&lt;?php print $content_attributes; ?&gt;&gt;
+    &lt;?php
+      // We hide the comments and links now so that we can render them later.
+      hide($content['comments']);
+      hide($content['links']);
+      print render($content);
+    ?&gt;
+  &lt;/div&gt;
+  					</code></pre>
+					</section>
+
+					<section>
+						<h3>Drupal 8</h3>
+						<pre><code class="hljs" data-trim>
+{{ attach_library('classy/node') }}
+&lt;article{{ attributes.addClass(classes) }}&gt;
+  &lt;header&gt;
+    {{ title_prefix }}
+    {% if not page %}
+      &lt;h2{{ title_attributes.addClass('node__title') }}&gt;
+        &lt;a href="{{ url }}" rel="bookmark"&gt;{{ label }}&lt;/a&gt;
+      &lt;/h2&gt;
+    {% endif %}
+    {{ title_suffix }}
+    {% if display_submitted %}
+      &lt;div class="node__meta"&gt;
+        {{ author_picture }}
+        &lt;span{{ author_attributes }}&gt;
+          {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        &lt;/span&gt;
+        {{ metadata }}
+      &lt;/div&gt;
+    {% endif %}
+  					</code></pre>
+					</section>
+
+					<section>
+						<h2>Vecchi browser</h2>
+						<p>Drupal 8 ha rimosso tutto il codice a supporto di IE 6/7/8</p>
+					</section>
+				</section>
+
+				<section>
+					<section data-background="images/drupal-8-logo.png">
+						<h3>Da procedurale a Object Oriented, i vantaggi del nuovo paradigma</h3>
+					</section>
+
+					<section>
+						<p>Il Core di Drupal fa già molte cose, ma il vero punto di forza sono i moduli <span class="blue">contrib</span></p>
+						<p class="fragment">Nello sviluppo di Drupal 8 ci si è concentrati sulla #DX -> Developer eXperiece</p>
+					</section>
+
+					<section>
+						<h2 style="text-align: left;">
+						    <b>Drupal 7</b>
+						</h2>
+						<p style="text-align: left;">
+							<b>90% <span class="blue">procedurale</span></b>
+						</p>
+						<div class="fragment" style="text-align: right; position: absolute; top: -10%; left: 40%; width: 60%;">
+							<p style="margin-bottom: 20px;">
+								<b>90% <span class="blue">Object Oriented</span></b>
+							</p>
+							<h2>
+								<b>Drupal 8</b>
+							</h2>
+						</div>
+					</section>
+
+					<section>
+						<p>In Drupal &lt; 8 lo strumento più importante da padroneggiare erano gli <span class="blue">Hook</span></p>
+						<p class="fragment">Callback invocate dal framework a istanti predefiniti</p>
+						<p class="fragment">In grado di <span class="blue">aggiungere</span>/<span class="blue">alterare</span> il comportamento del sistema o di <span class="blue">reagire</span> ad eventi</p>
+					</section>
+
+					<section>
+						<p>In Drupal 8 quasi tutti gli hook sono stati rimossi</p>
+						<p class="fragment">Sostituiti da: Servizi, Controller, Annotazioni, Plugin, Eventi</p>
+					</section>
+
+					<section>
+						<h2>Servizi</h2>
+						<pre><code class="hljs" data-trim>
+ services: 
+  logger.factory:
+    class: Drupal\Core\Logger\LoggerChannelFactory
+    parent: container.trait
+    tags:
+      - { name: service_collector, tag: logger, call: addLogger }
+  module_handler:
+    class: Drupal\Core\Extension\ModuleHandler
+    arguments: ['@app.root', '%container.modules%', ...
+  current_user:
+    class: Drupal\Core\Session\AccountProxy
+  renderer:
+    class: Drupal\Core\Render\Renderer
+    arguments: ['@controller_resolver', '@theme.manager', ...
+					</code></pre>
+					</section>
+
+					<section>
+						<h2>Controller</h2>
+						<pre><code class="hljs" data-trim>
+node.add_page:
+  path: '/node/add'
+  defaults:
+    _title: 'Add content'
+    _controller: '\Drupal\node\Controller\NodeController::addPage'
+  options:
+    _node_operation_route: TRUE
+  requirements:
+    _node_add_access: 'node'
+					</code></pre>
+					</section>
+
+					<section>
+						<h2>Annotazioni</h2>
+						<pre><code class="hljs" data-trim>
+/**
+ * Provides a 'Syndicate' block that links to the site's RSS feed.
+ *
+ * @Block(
+ *   id = "node_syndicate_block",
+ *   admin_label = @Translation("Syndicate"),
+ *   category = @Translation("System")
+ * )
+ */
+class SyndicateBlock extends BlockBase {
+[...]
+}
+					</code></pre>
+					</section>
+
+					<section>
+						<h2>Plugin</h2>
+						<img src="images/plugin.png" style="max-width: none; max-height: none; margin: 0px; border: none;">
+					</section>
+
+					<section>
+						<h2>Eventi</h2>
+						<img src="images/events.png" style="width: 900px; max-width: none; max-height: none; margin: 0px; border: none;">
+					</section>
+
+					<section>
+						<p>Un altro ambito in cui si è lavorato molto sono le prestazioni</p>
+						<p class="fragment">Fast by <span class="blue">default</span></p>
+						<p class="fragment">Cache tags, Placeholders, Big pipe, Turbolinks</p>
+					</section>
+				</section>
+
+				<section>
+					<section data-background="images/drupal-8-logo.png">
+						<h3>Una community da un milione di appasionati</h3>
+					</section>
+
+					<section>
+						<h2 style="text-align: left;">
+						    <b>Come for the</b>
+						</h2>
+						<p style="text-align: left;">
+							<b><span class="blue">software</span></b>
+						</p>
+						<div class="fragment" style="text-align: right; position: absolute; top: -10%; left: 40%; width: 60%;">
+							<p style="margin-bottom: 20px;">
+								<b>Stay for the </b>
+							</p>
+							<h2>
+								<b><span class="blue">community</span></b>
+							</h2>
+						</div>
+					</section>
+
+					<section>
+						<h3>Prossimi eventi</h3>
+						<ul>
+							<li>DrupalCon America (New Orleans 9-13 maggio)</li>
+							<li><span class="blue">Drupal Developer Days (Milano 21-26 giugno)</span></li>
+							<li>DrupalCon Europa (Dublino 26-30 settembre)</li>
+							<li>Drupal Day Italia (TBD)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Opportunità</h2>
+						<ul>
+							<li>Builder</li>
+							<li>Themer</li>
+							<li>Developer</li>
+							<li>UI/UX</li>
+							<li>Devops</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section data-background="images/drupal-8-logo.png">
+						<h3>Verso Drupal 8.1</h3>
+					</section>
+
+					<section>
+						<p>Il cliclo di sviluppo di Drupal 8 sarà più veloce, <span class="blue">promesso ;-)</span></p>
+						<p class="fragment">Una nuova release ogni 6 mesi: 8.1.0, 8.2.0, ..., 8.x.0</p>
+						<p class="fragment">Ad ogni release sarà consentito aggiugnere nuove funzionalità (e, in certi limiti, rompere la retrocompatibilità)</p>
+					</section>
+
+					<section>
+						<h2>Symfony 2.8</h2>
+					</section>
+
+					<section>
+						<h2>Migrate UI <span style="font-size: 30px">(alpha)<span></h2>
+					</section>
+
+					<section>
+						<h2>Big pipe <span style="font-size: 30px">(alpha)<span></h2>
+					</section>
+				</section>
+
+				<section>
+					<h2>Grazie</h2>
+					<h2 class="fragment">Domande?</h2>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
